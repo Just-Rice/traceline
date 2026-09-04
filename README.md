@@ -1,5 +1,14 @@
 # Traceline
 
+> **None of the people in this project are real.** Traceline looks like a
+> people-search site, but it never looks anything up. All ~2,400 profiles —
+> names, faces, addresses, phone numbers, relatives, employers, court filings
+> and the "sources" that assert them — are invented by a seeded random number
+> generator running in the browser. There is no database, no backend and no
+> network call. Searching a real person's name here returns a fictional
+> character who happens to share it, and nothing about that character describes
+> the real person.
+
 A front-end study of the people-search / background-report genre, built on
 **entirely synthetic data**. No scraping, no data-broker feeds, no backend, no
 network calls — the whole dataset is generated in the browser at page load.

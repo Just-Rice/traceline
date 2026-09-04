@@ -59,9 +59,12 @@ export const ICONS = {
 
 export function header(active) {
   return `
+  <div class="topbar">
   <div class="demo-banner">
-    Demonstration site — every person, address and record shown here is
-    computer-generated fiction. <a href="#/about">How this works</a>
+    <strong>Nothing here is real.</strong> Traceline is a demonstration.
+    Every name, face, address, relative and record is invented by a random
+    number generator in your browser — these people do not exist.
+    <a href="#/about">How this works</a>
   </div>
   <header class="site-header">
     <div class="wrap">
@@ -74,7 +77,8 @@ export function header(active) {
           aria-label="Toggle colour theme">${ICONS.sun}</button>
       </nav>
     </div>
-  </header>`;
+  </header>
+  </div>`;
 }
 
 export function footer() {
@@ -85,7 +89,7 @@ export function footer() {
       <span class="spacer"></span>
       <a href="#/about">About</a>
       <a href="#/pricing">Plans</a>
-      <span style="color:var(--text-3)">No real records. Not a consumer report.</span>
+      <span style="color:var(--text-3)">Invented data only. No real people, no real records, not a consumer report.</span>
     </div>
   </footer>`;
 }

@@ -10,9 +10,17 @@ export function homeView(states) {
     <div class="wrap">
       <h1>Find the person behind the name.</h1>
       <p class="lede">
-        Traceline searches a database of public-record style profiles and assembles
-        them into a single readable report — addresses, relatives, work history and
-        contact details in one place, each field labelled with the feed it came from.
+        That is the promise the people-search industry makes. Traceline is a
+        working model of how it delivers it — assembling addresses, relatives,
+        work history and contact details into one report, each field labelled
+        with the feed that asserted it.
+      </p>
+      <p class="lede-warn">
+        The difference is that <strong>Traceline's people do not exist.</strong>
+        All ~2,400 of them are invented in your browser by a random number
+        generator. Searching a real name here will not find that person; it will
+        find a fictional character who happens to share their name.
+        <a href="#/about">Read more about this demo</a>
       </p>
       <div class="search-card">
         <form id="searchForm">
@@ -103,7 +111,8 @@ export function scannerView(name) {
   return `
   <div class="scanner">
     <h2>Searching for ${esc(name)}</h2>
-    <p>Scanning the synthetic record set.</p>
+    <p>Scanning the invented record set — no lookup is happening, and no
+       network request is being made.</p>
     <div class="scan-bar"><div class="scan-fill" id="scanFill"></div></div>
     <div class="scan-steps" id="scanSteps">
       ${steps.map((s, i) => `
@@ -120,7 +129,9 @@ function resultCard(p) {
   <div class="result-card">
     <div class="avatar">${initials(p)}</div>
     <div>
-      <div class="result-name">${esc(p.fullName)}</div>
+      <div class="result-name">${esc(p.fullName)}
+        <span class="tag-fake" title="This profile is computer-generated">Invented</span>
+      </div>
       <div class="result-meta">${p.age} years old · ${esc(p.city)}, ${esc(p.state)}</div>
       <div class="result-lines">
         ${p.aliases.length
@@ -161,6 +172,9 @@ export function resultsView(results, query, page, qs) {
       <h1>${total} ${total === 1 ? 'match' : 'matches'} for ${esc(label)}${
         query.state ? ` in ${esc(query.state)}` : ''}</h1>
       <p>Ranked by match strength. <a href="#/">Refine this search</a></p>
+      <p class="results-warn">Every profile below is fictional and was generated
+        in your browser. None of these people exist, and none of them is the
+        person you searched for.</p>
     </div>
 
     ${total === 0 ? `
