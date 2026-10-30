@@ -179,7 +179,8 @@ function wireSearchForm() {
       const v = (fd.get(k) || '').toString().trim();
       if (v) u.set(k, v);
     }
-    if (![...u.keys()].length) {
+    // A state on its own finds nobody (search needs a name), so ask for one.
+    if (!u.has('first') && !u.has('last')) {
       form.querySelector('#q-last').focus();
       return;
     }
