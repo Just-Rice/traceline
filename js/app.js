@@ -58,6 +58,7 @@ function parseRoute() {
 }
 
 const scanned = new Set();   // query strings already animated this session
+let renders = 0;             // lets a finished scan tell whether its page is still the one showing
 
 function setChrome(active) {
   chrome.innerHTML = header(active);
@@ -67,6 +68,7 @@ function setChrome(active) {
 }
 
 function render() {
+  const turn = ++renders;
   const { path, qs, params } = parseRoute();
   const seg = path.split('/').filter(Boolean);
 
@@ -79,11 +81,14 @@ function render() {
       city: params.get('city') || '',
       free: params.get('q') || ''
     };
-    const page = Number(params.get('page') || 1);
+    const page = Math.floor(Number(params.get('page'))) || 1;   // a page that is not a number is page 1
     const { results, query } = search(index, raw);
     const key = qs.replace(/[?&]page=\d+/, '');
 
     const show = () => {
+      // The scan takes over a second. Someone who has gone to another page
+      // by then must not have the results drawn over it.
+      if (turn !== renders) return;
       app.innerHTML = resultsView(results, query, page, qs);
       window.scrollTo(0, 0);
     };
